@@ -27,10 +27,13 @@ if [ "$MODE" = "resume" ]; then
     echo "[INFO] 模式: 继续训练 (resume) - 恢复优化器状态和epoch"
     MODE_ARGS="--resume ${PRETRAINED_CKPT}"
     OUTPUT_DIR=/group/40143/howu/AIDE/results/genimage_resume
+    BLR=1e-4
 elif [ "$MODE" = "finetune" ]; then
     echo "[INFO] 模式: 重新训练 (finetune) - 仅加载模型权重,从epoch 0开始"
+    echo "[INFO] 使用较小学习率 (blr=1e-5) 避免破坏预训练权重"
     MODE_ARGS="--finetune ${PRETRAINED_CKPT}"
     OUTPUT_DIR=/group/40143/howu/AIDE/results/genimage_finetune
+    BLR=1e-5
 else
     echo "[ERROR] 未知 MODE: $MODE, 请设置为 resume 或 finetune"
     exit 1
@@ -41,7 +44,7 @@ PY_ARGS=${@:1}  # Any other arguments
 python -m torch.distributed.launch $DISTRIBUTED_ARGS main_finetune.py \
     --model AIDE \
     --batch_size 32 \
-    --blr 1e-4 \
+    --blr ${BLR} \
     --epochs 20 \
     --data_path /group/40143/howu/AIDE/dataset/GenImage/train \
     --eval_data_path /group/40143/howu/AIDE/dataset/GenImage/train/Midjourney \
