@@ -14,11 +14,16 @@ DISTRIBUTED_ARGS="
     --master_port $MASTER_PORT
 "
 
-PY_ARGS=${@:1}  # Any other arguments 
+PY_ARGS=${@:1}  # Any other arguments
 
 python -m torch.distributed.launch $DISTRIBUTED_ARGS main_finetune.py \
     --model AIDE \
     --batch_size 32 \
     --blr 1e-4 \
     --epochs 20 \
+    --data_path /group/40143/howu/AIDE/dataset/GenImage/train \
+    --eval_data_path /group/40143/howu/AIDE/dataset/GenImage/train/Midjourney \
+    --resnet_path /group/40143/howu/AIDE/pretrained_ckpts/resnet50.pth \
+    --convnext_path /group/40143/howu/AIDE/pretrained_ckpts/open_clip_pytorch_model.bin \
+    --output_dir /group/40143/howu/AIDE/results/genimage_train \
     ${PY_ARGS}
