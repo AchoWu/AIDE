@@ -5,7 +5,7 @@
 MODE="finetune"
 
 # 作者提供的训练好的checkpoint路径
-PRETRAINED_CKPT=/group/40143/howu/AIDE/pretrained_ckpts/genimage_train.pth
+PRETRAINED_CKPT=/group/40143/howu/AIDE/pretrained_ckpts/AIDE_checkpoints/GenImage_train.pth
 # ==============================
 
 GPU_NUM=8
