@@ -25,5 +25,6 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS main_finetune.py \
     --eval_data_path /group/40143/howu/AIDE/dataset/GenImage/train/Midjourney \
     --resnet_path /group/40143/howu/AIDE/pretrained_ckpts/resnet50.pth \
     --convnext_path /group/40143/howu/AIDE/pretrained_ckpts/open_clip_pytorch_model.bin \
-    --output_dir /group/40143/howu/AIDE/results/genimage_train \
+    --resume /group/40143/howu/AIDE/pretrained_ckpts/genimage_train.pth \
+    --output_dir /group/40143/howu/AIDE/results/genimage_finetune \
     ${PY_ARGS}
