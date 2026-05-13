@@ -2,7 +2,7 @@
 # ========== 配置区域 ==========
 # MODE: "resume" = 加载作者checkpoint继续训练(恢复优化器/epoch)
 #       "finetune" = 用作者checkpoint作为初始化,从epoch 0重新训练
-MODE="resume"
+MODE="finetune"
 
 # 作者提供的训练好的checkpoint路径
 PRETRAINED_CKPT=/group/40143/howu/AIDE/pretrained_ckpts/genimage_train.pth
