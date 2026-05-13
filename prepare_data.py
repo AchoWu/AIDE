@@ -114,5 +114,5 @@ def prepare_dataset(src_dir, dst_dir, mode="move"):
 if __name__ == "__main__":
     src = "/group/40092/howu/ai_or_real_img/dataset/genimage_data/Midjourney/imagenet_midjourney/train"
     dst = "/group/40143/howu/AIDE/dataset/GenImage/train/Midjourney"
-    mode = "copy"
+    mode = "symlink"
     prepare_dataset(src, dst, mode)
