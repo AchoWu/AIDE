@@ -8,7 +8,7 @@ MODE="finetune"
 PRETRAINED_CKPT=/group/40143/howu/AIDE/pretrained_ckpts/AIDE_checkpoints/GenImage_train.pth
 # ==============================
 
-GPU_NUM=8
+GPU_NUM=1
 WORLD_SIZE=1
 RANK=0
 MASTER_ADDR=localhost
@@ -41,7 +41,7 @@ fi
 
 PY_ARGS=${@:1}  # Any other arguments
 
-python -m torch.distributed.launch $DISTRIBUTED_ARGS main_finetune.py \
+torchrun $DISTRIBUTED_ARGS main_finetune.py \
     --model AIDE \
     --batch_size 32 \
     --blr ${BLR} \
