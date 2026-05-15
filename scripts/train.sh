@@ -8,7 +8,16 @@ MODE="finetune"
 PRETRAINED_CKPT=/group/40143/howu/AIDE/pretrained_ckpts/AIDE_checkpoints/GenImage_train.pth
 # ==============================
 
-GPU_NUM=1
+# NCCL 多卡通信稳定性配置
+export NCCL_IB_DISABLE=1
+export NCCL_P2P_DISABLE=1
+export NCCL_SOCKET_IFNAME=eth0
+export NCCL_DEBUG=WARN
+export CUDA_LAUNCH_BLOCKING=0
+export NCCL_BLOCKING_WAIT=1
+export NCCL_ASYNC_ERROR_HANDLING=1
+
+GPU_NUM=8
 WORLD_SIZE=1
 RANK=0
 MASTER_ADDR=localhost
